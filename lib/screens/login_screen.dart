@@ -76,16 +76,20 @@ class _LoginScreenState extends State<LoginScreen> {
         
   void authenticateUser(User user) {
 
-    setState(() {
-      isLoading = false;
-    });
+    
 
     _repository.authenticateUser(user).then((bool isNewUser){
       if(isNewUser){
         _repository.addDatatoDB(user);
+        setState(() {
+          isLoading = false;
+        });
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
       }
       else{
+        setState(() {
+          isLoading = false;
+        });
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
       }
     });

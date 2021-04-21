@@ -32,8 +32,9 @@ class FirebaseMethods{
     );
 
     UserCredential userCredential =  await _auth.signInWithCredential(credential);
-
+    print('in signIn fun');
     return userCredential.user;
+
 
   }
 

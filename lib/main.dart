@@ -31,9 +31,13 @@ class _MyAppState extends State<MyApp> {
         future: _firebaseRepository.getCurrentUser(),
         builder: (context, AsyncSnapshot<User> snapshot) {
           if(snapshot.hasData){
+            print("redirecting to home");
             return HomeScreen();
           }
-          return LoginScreen();
+          else{
+            print('redirecting to Login');
+            return LoginScreen();
+          }
         }
       ),  
     );
