@@ -54,6 +54,8 @@ class _ChatListScreenState extends State<ChatListScreen> {
     return Scaffold(
       backgroundColor: HelperVariabels.blackColor,
       appBar: customAppBar(context),
+      floatingActionButton: NewChatButton(),
+      body: ChatListContainer(currUserId),
     );
 
   }
@@ -84,7 +86,7 @@ class UserCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("inside build of userCircle - " + initials);
+    
     return Container(
       height: 40,
       width: 40,
@@ -125,6 +127,48 @@ class UserCircle extends StatelessWidget {
           
 
         ],
+      ),
+    );
+  }
+}
+
+class NewChatButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: HelperVariabels.fabGradient,
+        borderRadius: BorderRadius.circular(50),
+      ),
+      child: Icon(
+        Icons.edit,
+        color: Colors.white,
+        size: 25,
+      ),
+      padding: EdgeInsets.all(15),
+    );
+  }
+}
+
+class ChatListContainer extends StatefulWidget {
+
+  final String currUserId;
+
+  ChatListContainer(this.currUserId);
+
+  @override
+  _ChatListContainerState createState() => _ChatListContainerState();
+}
+
+class _ChatListContainerState extends State<ChatListContainer> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: ListView.builder(
+        itemCount: 2,
+        itemBuilder: (context, index){
+          return CustomTile();  
+        },
       ),
     );
   }
