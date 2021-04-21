@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:skypeclone/resources/firebase_repository.dart';
+import 'package:skypeclone/screens/home_screen.dart';
+import 'package:skypeclone/screens/login_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +24,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
 
-    
 
     return MaterialApp(
       title: "Skype Clone",
@@ -30,8 +31,9 @@ class _MyAppState extends State<MyApp> {
         future: _firebaseRepository.getCurrentUser(),
         builder: (context, AsyncSnapshot<User> snapshot) {
           if(snapshot.hasData){
-            
+            return HomeScreen();
           }
+          return LoginScreen();
         }
       ),  
     );

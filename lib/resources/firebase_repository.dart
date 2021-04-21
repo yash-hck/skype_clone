@@ -7,4 +7,12 @@ class FirebaseRepository{
 
   Future<User> getCurrentUser() => firebaseMethods.getCurrentUser();
 
+  Future<User> signIn() => firebaseMethods.signIn();
+
+  Future<bool> authenticateUser(User user) => firebaseMethods.authenticateUser(user);
+
+  Future<void> addDatatoDB(User user) => firebaseMethods.addDatatoDB(user); 
+
+  Future<void> signOut() => firebaseMethods.signOut();
+
 }
