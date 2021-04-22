@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skypeclone/utils/helper_variabels.dart';
 
 class CustomTile extends StatelessWidget {
 
@@ -28,8 +29,52 @@ class CustomTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return GestureDetector(
+      onTap: onTap,
+      onLongPress: onLongPress,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: mini?10:0),
+        margin: margin,
+        child: Row(
+          children: [
+            leading,
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: mini?3:20),
+                margin: EdgeInsets.only(left: mini?10:15),
+
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      width: 1,
+                      color: HelperVariabels.separatorColor
+                    )
+                  )
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        title,
+                        SizedBox(height: 5,),
+                        Row(
+                          children: [
+                            icon ?? Container(),
+                            subtitle
+                          ],
+                        )
+                      ],
+                    ),
+                    trailing ?? Container()
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

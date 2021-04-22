@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:skypeclone/models/user.dart';
 import 'package:skypeclone/resources/firebase_methods.dart';
 
 class FirebaseRepository{
@@ -14,5 +15,7 @@ class FirebaseRepository{
   Future<void> addDatatoDB(User user) => firebaseMethods.addDatatoDB(user); 
 
   Future<void> signOut() => firebaseMethods.signOut();
+
+  Future<List<ModelUser>> getUsersList(User user) => firebaseMethods.getUsersList(user);
 
 }

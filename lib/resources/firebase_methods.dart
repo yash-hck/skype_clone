@@ -45,7 +45,6 @@ class FirebaseMethods{
               .get();
 
     final List<DocumentSnapshot> list = result.docs;
-
     return list.length == 0? true: false;
     
   }
@@ -53,7 +52,6 @@ class FirebaseMethods{
   Future<void> addDatatoDB(User user) async{
     
     String username = Utils.getUserName(user.email);
-
     modelUser = ModelUser(
       name: user.displayName,
       profilePhoto: user.photoURL,
@@ -61,16 +59,30 @@ class FirebaseMethods{
       uid: user.uid,
       email: user.email
     );
-
     firestore.collection("users").doc(modelUser.uid).set(modelUser.toMap(modelUser));
 
   }
 
   Future<void> signOut() async {
-   
     await _googleSignIn.signOut();
-    
     return await _auth.signOut();
+  }
+
+
+  Future<List<ModelUser>> getUsersList(User user) async{
+    List<ModelUser> userList = [];
+
+    QuerySnapshot snapshot = await firestore.collection("users").get();
+
+    for(var i = 0;i < snapshot.docs.length;i++){
+      print('user - ' + user.displayName);
+      if(snapshot.docs[i].id != user.uid){
+        print(user.uid +  '  inside if user - ' + snapshot.docs[i].data()['uid']);
+        userList.add(ModelUser.fromMap(snapshot.docs[i].data()));
+      }
+    }
+
+    return userList; 
   }
 
 }

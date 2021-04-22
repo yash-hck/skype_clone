@@ -6,6 +6,7 @@ import 'package:skypeclone/resources/firebase_repository.dart';
 import 'package:skypeclone/utils/helper_variabels.dart';
 import 'package:skypeclone/utils/utilities.dart';
 import 'package:skypeclone/widgets/app_bar.dart';
+import 'package:skypeclone/widgets/custom_tile.dart';
 
 class ChatListScreen extends StatefulWidget {
   @override
@@ -40,7 +41,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
           color: Colors.white,
           ),
           onPressed: (){
-
+            Navigator.pushNamed(context, "/search_screen");
           },
 
         )
@@ -71,9 +72,6 @@ class _ChatListScreenState extends State<ChatListScreen> {
       });
       print("inside init function initial - " + initials);
     });
-
-
-
   }
 
 }
@@ -167,7 +165,50 @@ class _ChatListContainerState extends State<ChatListContainer> {
       child: ListView.builder(
         itemCount: 2,
         itemBuilder: (context, index){
-          return CustomTile();  
+          return CustomTile(
+            mini: false,
+            onTap: (){},
+            title: Text("The Falcon",
+              style: TextStyle(
+                color: Colors.white,
+                fontFamily: "Arial",
+                fontSize: 19
+              ),
+            ),
+            subtitle: Text("This is the Last Message",
+              style: TextStyle(
+                color: HelperVariabels.greyColor,
+                fontSize: 14
+              ),
+            ),
+            leading: Container(
+              constraints: BoxConstraints(maxHeight: 60, maxWidth: 60),
+              child: Stack(
+                children: [
+                  CircleAvatar(
+                    maxRadius: 30,
+                    backgroundColor: Colors.grey,
+                    backgroundImage: NetworkImage("https://drive.google.com/uc?export=view&id=1-aDGmI6wymzPO-4MtNxSz5-8oWM1ppzu"),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Container(
+                      height: 20,
+                      width: 20,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: HelperVariabels.onlineDotColor,
+                          border: Border.all(
+                            color: HelperVariabels.blackColor,
+                            width: 2
+                          )
+                        ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );  
         },
       ),
     );
