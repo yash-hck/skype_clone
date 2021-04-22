@@ -25,6 +25,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
 
+   // _firebaseRepository.signOut();
 
     return MaterialApp(
       title: "Skype Clone",

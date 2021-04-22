@@ -96,7 +96,7 @@ class UserCircle extends StatelessWidget {
         children: [
           Align(
             alignment: Alignment.center,
-            child: Text(
+            child: initials == null?CircularProgressIndicator() : Text(
               initials,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
